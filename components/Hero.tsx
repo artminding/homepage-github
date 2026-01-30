@@ -4,7 +4,7 @@ import { Camera, ArrowRight, User, Cpu, Sparkles, GraduationCap, Laptop } from '
 
 const Hero: React.FC = () => {
   // 修改此处：将初始状态设置为您的照片路径
-  const [profileImage, setProfileImage] = useState<string | null>('my-photo.jpg'); 
+  const [profileImage, setProfileImage] = useState<string | null>('/my-photo.jpg'); 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
