@@ -4,7 +4,8 @@ import { Camera, ArrowRight, User, Cpu, Sparkles, GraduationCap, Laptop } from '
 
 const Hero: React.FC = () => {
   // 默认指向 public/my-photo.jpg
-  // 在 Vite 项目中，public 目录下的资源在构建后会位于根路径
+  // 备用地址更新为一位具有专业感、学术气息的亚洲青年男性教师/专家
+  const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?auto=format&fit=crop&q=80&w=1000";
   const [profileImage, setProfileImage] = useState<string | null>('/my-photo.jpg'); 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -63,25 +64,20 @@ const Hero: React.FC = () => {
 
         {/* 形象展示区 */}
         <div className="relative">
-          {/* 头像容器：采用更加硬朗且精致的边框设计 */}
+          {/* 头像容器 */}
           <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-[3rem] border-[12px] border-white shadow-2xl overflow-hidden relative bg-slate-100 ring-1 ring-slate-200 transition-all duration-700 group hover:scale-[1.02] hover:rotate-1">
-            {profileImage ? (
-              <img 
-                src={profileImage} 
-                alt="李祎职场形象照" 
-                className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-500" 
-                onError={(e) => {
-                  console.warn("未在 public 文件夹中找到 my-photo.jpg，请检查文件名和路径。");
-                  setProfileImage(null);
-                }}
-              />
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center text-emerald-800 p-10 text-center bg-gradient-to-br from-emerald-50 to-slate-100">
-                <User className="w-20 h-20 mb-4 text-emerald-600/20" />
-                <p className="text-xs font-black text-emerald-800/60 tracking-widest uppercase">李祎 · 待加载</p>
-                <p className="text-[10px] text-emerald-700/40 mt-2">请确保图片位于 public/my-photo.jpg</p>
-              </div>
-            )}
+            <img 
+              src={profileImage || FALLBACK_IMAGE} 
+              alt="李祎职场形象照" 
+              className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-500" 
+              onError={(e) => {
+                // 如果 /my-photo.jpg 加载失败，自动切换到年轻亚洲专家人像备用图
+                const target = e.target as HTMLImageElement;
+                if (target.src !== FALLBACK_IMAGE) {
+                  target.src = FALLBACK_IMAGE;
+                }
+              }}
+            />
             
             {/* 更换照片遮罩层 */}
             <button 
@@ -89,7 +85,7 @@ const Hero: React.FC = () => {
               className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center text-white backdrop-blur-sm cursor-pointer"
             >
               <Camera className="w-10 h-10 mb-2" />
-              <span className="font-bold">上传新照片</span>
+              <span className="font-bold text-sm">更换职业照</span>
             </button>
           </div>
 
