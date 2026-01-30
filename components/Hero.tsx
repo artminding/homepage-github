@@ -1,21 +1,10 @@
 
 import React, { useState, useRef } from 'react';
-import { Camera, ArrowRight, User, Cpu } from 'lucide-react';
+import { Camera, ArrowRight, User, Cpu, Sparkles, GraduationCap, Laptop } from 'lucide-react';
 
 const Hero: React.FC = () => {
-  /**
-   * 🖼️ 图片更换指南：
-   * 
-   * 方案 A：使用本地文件
-   * 1. 将图片（如 my-photo.jpg）放入项目根目录（与 App.tsx 同级）。
-   * 2. 将下方 setProfileImage 的初始值改为: '/my-photo.jpg'
-   * 
-   * 方案 B：使用网络链接（推荐）
-   * 1. 将图片上传到 GitHub 或图床。
-   * 2. 将下方 setProfileImage 的初始值改为: 'https://您的图片链接.jpg'
-   */
-  const [profileImage, setProfileImage] = useState<string | null>('/my-photo.jpg'); 
-  
+  // 修改此处：将初始状态设置为您的照片路径
+  const [profileImage, setProfileImage] = useState<string | null>('my-photo.jpg'); 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,82 +19,101 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative pt-32 pb-20 overflow-hidden px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-      {/* 背景大标题水印 */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 text-7xl sm:text-8xl lg:text-9xl font-black text-slate-900/5 whitespace-nowrap pointer-events-none select-none z-0 uppercase tracking-tighter">
-        Digital Education
+    <section id="home" className="relative pt-40 pb-24 overflow-hidden px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+      {/* 背景动态水印 */}
+      <div className="absolute top-24 left-1/2 -translate-x-1/2 text-8xl sm:text-9xl font-black text-slate-900/[0.03] whitespace-nowrap pointer-events-none select-none z-0 uppercase tracking-tighter">
+        Scholar & Operator
       </div>
 
-      <div className="max-w-4xl mx-auto text-center z-10 flex flex-col items-center">
-        {/* 自我介绍文本 */}
-        <p className="text-lg sm:text-xl text-slate-600 mb-8 leading-relaxed max-w-3xl">
-          大家好，我是 <span className="font-bold text-slate-900">李祎</span>。
-          目前致力于 AI 和高等教育领域的交叉研究。我通过技术赋能教育，
-          为高校及机构提供生成式 AI 技术应用讲座、专业技术咨询及高品质产品研发服务。
+      <div className="max-w-5xl mx-auto text-center z-10 flex flex-col items-center">
+        {/* 核心身份标签 */}
+        <div className="inline-flex items-center gap-2 mb-8 bg-emerald-50 border border-emerald-100 px-5 py-2 rounded-full shadow-sm animate-float">
+          <Sparkles className="w-4 h-4 text-emerald-600" />
+          <span className="text-xs font-black text-emerald-800 tracking-[0.2em] uppercase">学术洞察 × 技术实操</span>
+        </div>
+
+        {/* 标题 */}
+        <h1 className="text-5xl sm:text-7xl font-extrabold text-slate-900 mb-8 tracking-tight leading-[1.1]">
+          用<span className="text-emerald-600">教育智慧</span>驱动<br/>
+          <span className="relative">
+            <span className="relative z-10">数智化变革</span>
+            <span className="absolute bottom-2 left-0 w-full h-4 bg-emerald-200/50 -z-10"></span>
+          </span>
+        </h1>
+        
+        {/* 描述内容：强调双重优势 */}
+        <p className="text-xl sm:text-2xl text-slate-500 mb-12 leading-relaxed max-w-3xl font-medium">
+          我是 <span className="text-slate-900 font-bold underline decoration-emerald-500 underline-offset-4">李祎</span>。
+          致力于发挥在<span className="text-slate-900">大学教育领域</span>的学科积淀与<span className="text-slate-900">智能技术操作</span>的实战敏锐度，
+          为高等教育转型提供深度支撑。
         </p>
 
         {/* 交互按钮 */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <a href="#contact" className="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-3.5 rounded-xl font-bold text-lg hover:bg-slate-800 transition-all shadow-xl group">
-            联系合作
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-20">
+          <a href="#contact" className="w-full sm:w-auto flex items-center justify-center gap-3 bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-emerald-600 transition-all shadow-2xl hover:shadow-emerald-200 group">
+            咨询合作
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
-          <a href="#research" className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-slate-700 border border-slate-200 px-8 py-3.5 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all">
-            了解研究成果
+          <a href="#research" className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white text-slate-700 border border-slate-200 px-10 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all">
+            了解研究
           </a>
         </div>
 
-        {/* 形象展示区 */}
-        <div className="relative group">
-          <div className="w-64 h-64 sm:w-72 sm:h-72 rounded-full border-[10px] border-white shadow-2xl overflow-hidden relative bg-emerald-100 ring-1 ring-slate-100 transition-transform duration-500 group-hover:scale-[1.02]">
+        {/* 形象展示与身份卡片 */}
+        <div className="relative">
+          <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-[3rem] border-[12px] border-white shadow-2xl overflow-hidden relative bg-emerald-100 ring-1 ring-slate-200 transition-all duration-700 group hover:scale-[1.02] hover:rotate-1">
             {profileImage ? (
               <img 
                 src={profileImage} 
                 alt="李祎" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover" 
                 onError={(e) => {
-                  // 如果图片加载失败（例如路径写错），显示默认图标
-                  (e.target as HTMLImageElement).style.display = 'none';
+                  // 如果 my-photo.jpg 加载失败，回退到占位符
+                  (e.target as HTMLImageElement).src = ''; 
                   setProfileImage(null);
                 }}
               />
             ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center text-emerald-800 p-8 text-center bg-gradient-to-br from-emerald-100 to-teal-200">
-                <User className="w-20 h-20 mb-2 opacity-30" />
-                <p className="text-xs font-medium text-emerald-700">点击上传形象照</p>
+              <div className="w-full h-full flex flex-col items-center justify-center text-emerald-800 p-10 text-center bg-gradient-to-br from-emerald-100 to-teal-100">
+                <User className="w-20 h-20 mb-4 text-emerald-600/30" />
+                <p className="text-xs font-black text-emerald-800/60 tracking-widest uppercase">李祎 · 数智品牌</p>
+                <p className="text-[10px] text-emerald-700/40 mt-2">点击上传职场形象照</p>
               </div>
             )}
             
             <button 
               onClick={() => fileInputRef.current?.click()}
-              className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white backdrop-blur-[2px] cursor-pointer"
+              className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center text-white backdrop-blur-sm cursor-pointer"
             >
-              <Camera className="w-8 h-8 mb-2" />
-              <span className="text-sm font-semibold">更换照片</span>
+              <Camera className="w-10 h-10 mb-2" />
+              <span className="font-bold">更换照片</span>
             </button>
           </div>
 
-          {/* 装饰卡片 */}
-          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 sm:translate-x-0 sm:left-auto sm:-right-8 bg-white p-5 rounded-2xl shadow-2xl border border-emerald-50 w-64 z-20">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
-              <span className="text-xs font-bold text-slate-800 tracking-wide uppercase">李祎 · 数智教育专家</span>
+          {/* 悬浮标签：学术 */}
+          <div className="absolute -top-6 -left-12 bg-white p-4 rounded-2xl shadow-xl border border-emerald-50 flex items-center gap-3 animate-float" style={{ animationDelay: '1s' }}>
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
+              <GraduationCap className="w-6 h-6 text-emerald-600" />
             </div>
-            <p className="text-[10px] text-slate-500 leading-tight font-medium">致力于 AI 与高等教育的深度融合研究与实践</p>
+            <div className="text-left">
+              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Academic Background</p>
+              <p className="text-sm font-bold text-slate-800">教育学科研究背景</p>
+            </div>
           </div>
-          
-          <div className="absolute top-2 -left-4 w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg border border-slate-100 hidden sm:flex rotate-[-12deg] z-20">
-            <Cpu className="w-6 h-6 text-emerald-600" />
+
+          {/* 悬浮标签：技术 */}
+          <div className="absolute -bottom-6 -right-12 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 animate-float" style={{ animationDelay: '2s' }}>
+            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center">
+              <Laptop className="w-6 h-6 text-slate-600" />
+            </div>
+            <div className="text-left">
+              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Technical Mastery</p>
+              <p className="text-sm font-bold text-slate-800">AI 技术实操能力</p>
+            </div>
           </div>
         </div>
         
-        <input 
-          type="file" 
-          ref={fileInputRef} 
-          onChange={handleImageUpload} 
-          className="hidden" 
-          accept="image/*"
-        />
+        <input type="file" ref={fileInputRef} onChange={handleImageUpload} className="hidden" accept="image/*" />
       </div>
     </section>
   );
