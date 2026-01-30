@@ -1,10 +1,12 @@
 
 import React, { useState, useRef } from 'react';
 import { Camera, ArrowRight, User, Cpu, Sparkles, GraduationCap, Laptop } from 'lucide-react';
+// 核心修改：直接导入根目录下的图片资源
+import defaultProfilePic from '../my-photo.jpg';
 
 const Hero: React.FC = () => {
-  // 修改此处：将初始状态设置为您的照片路径
-  const [profileImage, setProfileImage] = useState<string | null>('/my-photo.jpg'); 
+  // 将导入的图片对象作为初始值
+  const [profileImage, setProfileImage] = useState<string | null>(defaultProfilePic); 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +43,7 @@ const Hero: React.FC = () => {
           </span>
         </h1>
         
-        {/* 描述内容：强调双重优势 */}
+        {/* 描述内容 */}
         <p className="text-xl sm:text-2xl text-slate-500 mb-12 leading-relaxed max-w-3xl font-medium">
           我是 <span className="text-slate-900 font-bold underline decoration-emerald-500 underline-offset-4">李祎</span>。
           致力于发挥在<span className="text-slate-900">大学教育领域</span>的学科积淀与<span className="text-slate-900">智能技术操作</span>的实战敏锐度，
@@ -68,8 +70,7 @@ const Hero: React.FC = () => {
                 alt="李祎" 
                 className="w-full h-full object-cover" 
                 onError={(e) => {
-                  // 如果 my-photo.jpg 加载失败，回退到占位符
-                  (e.target as HTMLImageElement).src = ''; 
+                  console.warn("Initial image load failed, reverting to placeholder.");
                   setProfileImage(null);
                 }}
               />
@@ -90,7 +91,7 @@ const Hero: React.FC = () => {
             </button>
           </div>
 
-          {/* 悬浮标签：学术 */}
+          {/* 悬浮标签 */}
           <div className="absolute -top-6 -left-12 bg-white p-4 rounded-2xl shadow-xl border border-emerald-50 flex items-center gap-3 animate-float" style={{ animationDelay: '1s' }}>
             <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
               <GraduationCap className="w-6 h-6 text-emerald-600" />
@@ -101,7 +102,6 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* 悬浮标签：技术 */}
           <div className="absolute -bottom-6 -right-12 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 animate-float" style={{ animationDelay: '2s' }}>
             <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center">
               <Laptop className="w-6 h-6 text-slate-600" />
