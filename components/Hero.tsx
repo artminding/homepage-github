@@ -1,12 +1,11 @@
 
 import React, { useState, useRef } from 'react';
 import { Camera, ArrowRight, User, Cpu, Sparkles, GraduationCap, Laptop } from 'lucide-react';
-// 核心修改：直接导入根目录下的图片资源
-import defaultProfilePic from '../my-photo.jpg';
 
 const Hero: React.FC = () => {
-  // 将导入的图片对象作为初始值
-  const [profileImage, setProfileImage] = useState<string | null>(defaultProfilePic); 
+  // 采用 public 文件夹方式，直接使用绝对路径字符串
+  // 确保图片文件位于：项目根目录/public/my-photo.jpg
+  const [profileImage, setProfileImage] = useState<string | null>('/my-photo.jpg'); 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +69,7 @@ const Hero: React.FC = () => {
                 alt="李祎" 
                 className="w-full h-full object-cover" 
                 onError={(e) => {
-                  console.warn("Initial image load failed, reverting to placeholder.");
+                  console.warn("Image not found in public folder, reverting to placeholder.");
                   setProfileImage(null);
                 }}
               />
