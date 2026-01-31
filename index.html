@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -32,31 +34,34 @@
             }
         }
     </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .glass-morphism {
-                @apply bg-white/70 backdrop-blur-md border border-white/30 shadow-xl;
-            }
-            .markdown-body {
-                @apply leading-relaxed text-slate-700;
-            }
-            .markdown-body strong { @apply text-slate-900 font-bold; }
-            .markdown-body h1 { @apply text-xl font-bold mt-4 mb-2 text-slate-900; }
-            .markdown-body h2 { @apply text-lg font-bold mt-3 mb-1 text-slate-900; }
-            .markdown-body ul { @apply list-disc pl-5 mb-3 space-y-1; }
-            .markdown-body code { @apply bg-slate-100 px-1.5 py-0.5 rounded text-emerald-700 font-mono text-xs; }
-        }
-        
-        /* 动画定义 */
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-          100% { transform: translateY(0px); }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-    </style>
+
+<style type="text/tailwindcss">  
+    @tailwind base;  
+    @tailwind components;  
+    @tailwind utilities;  
+      
+    @layer utilities {  
+        .glass-morphism {  
+            @apply bg-white/70 backdrop-blur-md border border-white/30 shadow-xl;  
+        }  
+        .markdown-body {  
+            @apply leading-relaxed text-slate-700;  
+        }  
+        /* ... 其他样式 ... */  
+    }  
+      
+    /* 动画定义 */  
+    @keyframes float {  
+      0% { transform: translateY(0px); }  
+      50% { transform: translateY(-10px); }  
+      100% { transform: translateY(0px); }  
+    }  
+    .animate-float {  
+      animation: float 6s ease-in-out infinite;  
+    }  
+</style>  
+
+
     <script type="importmap">
 {
   "imports": {
