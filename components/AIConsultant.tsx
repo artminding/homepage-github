@@ -7,7 +7,7 @@ import { ChatMessage } from '../types';
 
 const AIConsultant: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: '您好！我是李祎老师研发的“数智服务助手”。我已加载李老师在 **大学教育学科** 与 **AI 实操技术** 的复合知识库。无论是高等教育政策咨询，还是具体的 AI 工作流落地，我都能为您提供专业解答。' }
+    { role: 'model', text: '您好！我是李祎研发的“数智服务助手”。我深度融合了李老师在 **大学教育学科研究** 与 **AI 技术工程实战** 的复合知识体系。您可以向我咨询关于高等教育数字化转型、AI 提示词工程落地、或知识工作者如何实现技术进化的相关话题。' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -33,13 +33,17 @@ const AIConsultant: React.FC = () => {
         model: 'gemini-3-flash-preview',
         contents: userMsg,
         config: {
-          systemInstruction: `你是李祎开发的数智助手。
-          李祎个人优势：1. 大学教育学科深度（懂教育逻辑）；2. 智能技术实操敏锐度（能技术落地）。
-          你的回答应当：
-          - 结合教育学理论与 AI 技术实操。
-          - 展现 Scholar-Operator（学者型操作员）的双重底色。
-          - 使用 Markdown 优化排版。
-          - 具有前瞻性、亲和力且实操性强。`,
+          systemInstruction: `你是李祎研发的“数智专家助理”。
+          核心定位：Scholar-Operator（学者型操作员）。
+          知识背景：
+          1. 大学教育领域：深谙高等教育政策、治理体系、教学设计与教育评估。
+          2. 智能技术领域：精通 LLM 落地应用、RAG 架构、提示词工程（Prompt Engineering）与工作流自动化。
+          
+          回答准则：
+          - 结合“学术广度”与“工程精度”。在讨论教育问题时引入技术视角，在讨论技术问题时回归教育本质。
+          - 针对“知识工作者如何发挥优势”的提问，强调“复合背景”带来的“翻译官”与“连接器”价值。
+          - 风格：睿智、稳健、实战派。
+          - 排版：使用 Markdown 增强可读性（标题、列表、粗体）。`,
           temperature: 0.7,
         }
       });
@@ -47,7 +51,7 @@ const AIConsultant: React.FC = () => {
       const aiText = response.text || '暂无法响应，请稍后再试。';
       setMessages(prev => [...prev, { role: 'model', text: aiText }]);
     } catch (error: any) {
-      setMessages(prev => [...prev, { role: 'model', text: `**[系统提示]** 网络连接波动，请重试。` }]);
+      setMessages(prev => [...prev, { role: 'model', text: `**[系统提示]** 网络波动，请重试或直接联系李老师。` }]);
     } finally {
       setIsLoading(false);
     }
@@ -63,7 +67,7 @@ const AIConsultant: React.FC = () => {
           <div>
             <h3 className="font-black text-base tracking-tight">李祎 · 数智助手</h3>
             <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-bold uppercase tracking-widest">
-              <Wifi className="w-2.5 h-2.5" /> <span>Expert Intelligence Connected</span>
+              <Wifi className="w-2.5 h-2.5" /> <span>Consulting Mode Active</span>
             </div>
           </div>
         </div>
@@ -92,7 +96,7 @@ const AIConsultant: React.FC = () => {
           <div className="flex justify-start">
             <div className="bg-white p-5 rounded-3xl shadow-sm border border-slate-100 flex items-center gap-3">
               <Loader2 className="w-4 h-4 text-emerald-500 animate-spin" />
-              <span className="text-xs text-slate-400 font-bold tracking-widest">数智转化中...</span>
+              <span className="text-xs text-slate-400 font-bold tracking-widest uppercase">Expert reasoning...</span>
             </div>
           </div>
         )}
@@ -105,7 +109,7 @@ const AIConsultant: React.FC = () => {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSend()}
           disabled={isLoading}
-          placeholder="向双向专家咨询教育、技术或项目..."
+          placeholder="向专家助手提问，如：'如何评价AI在高校评价体系中的作用？'"
           className="flex-grow px-6 py-4 bg-slate-100 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all border-transparent border focus:bg-white"
         />
         <button 
